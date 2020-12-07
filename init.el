@@ -16,7 +16,7 @@
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "add-lisp" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "lisp-files" user-emacs-directory))
 (require 'init-benchmarking) ;; Measure startup time
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
@@ -54,9 +54,25 @@
 (maybe-require-package 'scratch)
 (require-package 'command-log-mode)
 
+;;----------------------------------------------------------------------------
+;; Added after forking repository
+;;----------------------------------------------------------------------------
+(require 'init-defaults)
+(require 'init-golang)
+(require 'init-navigation)
+(require 'init-magit)
+(require 'init-restart-emacs)
+(require 'init-treemacs)
+(require 'init-phpcbf)
+(require 'init-master)
+
+;;----------------------------------------------------------------------------
+;; Original configurations
+;;----------------------------------------------------------------------------
 (require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
+(require 'init-my-themes) ;; Put here after fork
 (require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired)

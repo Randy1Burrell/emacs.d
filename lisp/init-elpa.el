@@ -10,15 +10,22 @@
 (setq package-user-dir
       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
                         user-emacs-directory))
-
+(let ((versioned-package-dir
+       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+                         user-emacs-directory)))
+  (setq package-user-dir versioned-package-dir))
 
 
 ;;; Standard package repositories
-
-(add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
-;; Official MELPA Mirror, in case necessary.
-;;(add-to-list 'package-archives (cons "melpa-mirror" (concat proto "://www.mirrorservice.org/sites/melpa.org/packages/")) t)
-
+;; Make all commands of the “package” module present.
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http://" "https://")))
+  (add-to-list 'package-archives (cons "org" (concat proto "orgmode.org/elpa/")) t)
+  (add-to-list 'package-archives (cons "gnu" (concat proto "elpa.gnu.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa" (concat proto "melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "stable.melpa.org/packages/")) t)
+  )
 
 
 ;; Work-around for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341
