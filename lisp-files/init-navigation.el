@@ -28,7 +28,7 @@
 (global-set-key (kbd "M-]") (ignore-error-wrapper 'windmove-right))
 (global-set-key (kbd "s-k") (ignore-error-wrapper 'windmove-up))
 (global-set-key (kbd "s-j") (ignore-error-wrapper 'windmove-down))
-(global-set-key (kbd "s-o") (ignore-error-wrapper 'other-window))
+(global-set-key (kbd "s-]") 'other-window)
 
 (use-package buffer-flip
   :ensure t
