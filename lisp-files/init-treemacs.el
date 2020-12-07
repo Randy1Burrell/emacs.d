@@ -66,7 +66,7 @@
        (treemacs-git-mode 'simple))))
   :bind
   (:map global-map
-        ("M-0"     . treemacs-select-window)
+        ("s-0"     . treemacs-select-window)
         ("C-x t 1"   . treemacs-delete-other-windows)
         ("C-x t t"   . treemacs)
         ("C-x t B"   . treemacs-bookmark)
