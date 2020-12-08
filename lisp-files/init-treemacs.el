@@ -92,4 +92,4 @@
   :config (treemacs-set-scope-type 'Perspectives))
 
 (provide 'init-treemacs)
-;; init-trremacs.el ends here
+;;; init-trremacs.el ends here

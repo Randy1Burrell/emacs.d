@@ -61,11 +61,25 @@
   :config
   (global-set-key "\C-ct" 'google-translate-at-point))
 
-(use-package langtool
-  :ensure t
-  :custom
-  (langtool-language-tool-jar
-   "~/Applications/LanguageTool/languagetool-commandline.jar"))
+;;--------------------------------------------------------------------------------
+;; Pull down and use languagetool
+;;--------------------------------------------------------------------------------
+(unless (file-directory-p "~/.emacs.d/LanguageTool")
+  (shell-command-to-string
+   "curl -LO https://languagetool.org/download/LanguageTool-5.1.zip"))
+
+(unless (file-exists-p "~/.emacs.d/LanguageTool")
+  (shell-command-to-string
+   "unzip Languagetool-5.1.zip &&
+    mv LanguageTool-5.1 ~/.emacs.d/LanguageTool &&
+    rm LanguageTool-5.1.zip"))
+
+(unless (not (file-directory-p "~/.emacs.d/LanguageTool"))
+  (use-package langtool
+    :ensure t
+    :custom
+    (langtool-language-tool-jar
+     "~/.emacs.d/LanguageTool/languagetool-commandline.jar")))
 
 ;;--------------------------------------------------------------------------------
 ;; Quickly check, correct, then clean up /region/ with M-^
@@ -126,6 +140,12 @@ Prompt only if there are unsaved changes."
                         (unless (one-window-p) (delete-window)))
                     (16   (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
                           (delete-other-windows)))))
+
+(unless (package-installed-p 'vimrc-mode)
+  (package-install 'vimrc-mode))
+
+(unless (package-installed-p 'zlc)
+  (package-install 'zlc))
 
 (provide 'init-master)
 ;;; init-master.el ends here

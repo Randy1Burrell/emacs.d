@@ -37,13 +37,13 @@
         '("^\\*helm\\b")))
 
 ;; key to begin cycling buffers.
-(global-set-key (kbd "C-<tab>") 'buffer-flip-forward)
+(global-set-key (kbd "M-S-<tab>") 'buffer-flip-forward)
 (global-set-key (kbd "M-<tab>") 'buffer-flip-backward)
 
-(use-package ace-window
-  :ensure t)
+(unless (package-installed-p 'ace-window)
+  (package-install 'ace-window))
 
 (global-set-key (kbd "M-{") 'ace-window)
 
 (provide 'init-navigation)
-;;; navigation.el ends here
+;;; init-navigation.el ends here

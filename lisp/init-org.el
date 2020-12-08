@@ -381,5 +381,9 @@ typical word processor."
      (sqlite . t))))
 
 
+;; Let's get some fancy bullets
+(unless (package-installed-p 'org-bullets)
+  (package-install 'org-bullets))
+
 (provide 'init-org)
 ;;; init-org.el ends here

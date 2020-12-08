@@ -36,6 +36,7 @@
 ;;--------------------------------------------------------------------------------
 (blink-cursor-mode 0)
 (global-hl-line-mode t)
+(add-hook 'find-file-hook '(lambda () (set-default 'truncate-lines t)))
 (set-default 'truncate-lines t)
 
 ;;--------------------------------------------------------------------------------
@@ -71,4 +72,4 @@
               indent-tabs-mode nil)
 
 (provide 'init-defaults)
-;; init-defaults ends here
+;;; init-defaults.el ends here

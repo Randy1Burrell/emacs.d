@@ -1,5 +1,5 @@
-[![Build Status](https://github.com/purcell/emacs.d/workflows/CI/badge.svg)](https://github.com/purcell/emacs.d/actions)
-<a href="https://www.patreon.com/sanityinc"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
+[![Build Status](https://github.com/randy1burrell/emacs.d/workflows/CI/badge.svg)](https://github.com/randy1burrelll/emacs.d/actions)
+<!-- <a href="https://www.patreon.com/sanityinc"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a> -->
 
 # A reasonable Emacs config
 
@@ -20,6 +20,7 @@ in the approximate order of how much I use them, from most to least:
 * Javascript / Typescript / Coffeescript
 * HTML / HAML / Markdown / Textile / ERB
 * Common Lisp (with Slime)
+* Golang
 * Python
 * Rust
 * Clojure (with Cider and nRepl)
@@ -57,7 +58,7 @@ To install, clone this repo to `~/.emacs.d`, i.e. ensure that the
 `init.el` contained in this repo ends up at `~/.emacs.d/init.el`:
 
 ```
-git clone https://github.com/purcell/emacs.d.git ~/.emacs.d
+git clone https://github.com/randy1burrell/emacs.d.git ~/.emacs.d
 ```
 
 Upon starting up Emacs for the first time, further third-party
@@ -110,17 +111,17 @@ You might also want to check out `emacs-starter-kit` and `prelude`.
 If you hit any problems, please first ensure that you are using the latest version
 of this code, and that you have updated your packages to the most recent available
 versions (see "Updates" above). If you still experience problems, go ahead and
-[file an issue on the github project](https://github.com/purcell/emacs.d).
+[file an issue on the github project](https://github.com/randy1burrell/emacs.d).
 
--Steve Purcell
+-Randy Burrell
 
 <hr>
 
 
-[💝 Support this project and my other Open Source work](https://www.patreon.com/sanityinc)
+<!-- [💝 Support this project and my other Open Source work](https://www.patreon.com/sanityinc) -->
 
-[💼 LinkedIn profile](https://uk.linkedin.com/in/stevepurcell)
+[💼 LinkedIn profile](https://uk.linkedin.com/in/randyburrell)
 
-[✍ sanityinc.com](http://www.sanityinc.com/)
+[✍ randyburrell.info](https://randyburrell.info/)
 
-[🐦 @sanityinc](https://twitter.com/sanityinc)
+[🐦_@RandyBurrell1](https://twitter.com/RandyBurrell1)

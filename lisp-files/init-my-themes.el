@@ -26,4 +26,4 @@
 (setq beacon-color "#666600")
 
 (provide 'init-my-themes)
-; init-my-themes.el ends here
+;;; init-my-themes.el ends here
