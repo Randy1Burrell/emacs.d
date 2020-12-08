@@ -1,4 +1,4 @@
-;;; init-defaults.el --- Support defaults -*- lexical-binding: t -*-
+;;; init-hydra.el --- Support defaults -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
