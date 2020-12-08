@@ -385,5 +385,8 @@ typical word processor."
 (unless (package-installed-p 'org-bullets)
   (package-install 'org-bullets))
 
+;; Run org-bullets minor mode in org-mode
+(add-hook 'org-mode-hook 'org-bullets-mode)
+
 (provide 'init-org)
 ;;; init-org.el ends here

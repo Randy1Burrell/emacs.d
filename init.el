@@ -57,6 +57,7 @@
 ;;----------------------------------------------------------------------------
 ;; Added after forking repository
 ;;----------------------------------------------------------------------------
+(require 'init-hydra)
 (require 'init-golang)
 (require 'init-navigation)
 (require 'init-magit)
