@@ -382,11 +382,11 @@ typical word processor."
 
 
 ;; Let's get some fancy bullets
-(unless (package-installed-p 'org-bullets)
-  (package-install 'org-bullets))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 
-;; Run org-bullets minor mode in org-mode
-(add-hook 'org-mode-hook 'org-bullets-mode)
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
 
 (provide 'init-org)
 ;;; init-org.el ends here

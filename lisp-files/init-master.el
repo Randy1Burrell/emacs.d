@@ -100,8 +100,8 @@
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
-(unless (package-installed-p 'editorconfig)
-  (package-install 'editorconfig))
+(use-package editorconfig
+  :defer t)
 
 (unless (package-installed-p 'editorconfig-generate)
   (package-install 'editorconfig-generate))

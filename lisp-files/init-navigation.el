@@ -24,6 +24,7 @@
 ;; Use super h,j,k,l for window navigation comparing to vim move keys
 (global-set-key (kbd "s-h") (ignore-error-wrapper 'windmove-left))
 (global-set-key (kbd "M-[") (ignore-error-wrapper 'windmove-left))
+(global-set-key (kbd "s-[") (ignore-error-wrapper 'windmove-left))
 (global-set-key (kbd "s-l") (ignore-error-wrapper 'windmove-right))
 (global-set-key (kbd "M-]") (ignore-error-wrapper 'windmove-right))
 (global-set-key (kbd "s-k") (ignore-error-wrapper 'windmove-up))
@@ -34,7 +35,13 @@
   :ensure t
   :config
   (setq buffer-flip-skip-patterns
-        '("^\\*helm\\b")))
+        '("^\\*"
+          "^magit"
+          "^\\*helm\\b"
+          "^\\*Help\\*\\b"
+          "COMMIT_EDITMSG"
+          "^\\*Ibuffer\\*\\b"
+          "^\\*Messages\\*\\b")))
 
 ;; key to begin cycling buffers.
 (global-set-key (kbd "M-S-<tab>") 'buffer-flip-forward)

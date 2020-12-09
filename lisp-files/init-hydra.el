@@ -6,13 +6,14 @@
 ;; Invoke all possible key extensions having a common prefix by
 ;; supplying the prefix only once.
 ;;--------------------------------------------------------------------------------
-(use-package hydra)
+(unless (package-installed-p 'hydra)
+  (package-install 'hydra))
 
 ;;--------------------------------------------------------------------------------
 ;; Neato doc strings for hydras
 ;;--------------------------------------------------------------------------------
-(use-package pretty-hydra
-  :ensure t)
+(unless (package-installed-p 'pretty-hydra)
+  (package-install 'pretty-hydra))
 ;;--------------------------------------------------------------------------------
 ;; Hydra: Supply a prefix only once:2 ends here
 ;;--------------------------------------------------------------------------------
