@@ -64,26 +64,23 @@
 ;;--------------------------------------------------------------------------------
 ;; Pull down this package from GitHub
 ;;--------------------------------------------------------------------------------
-(unless (file-directory-p "~/.emacs.d/site-lisp/gulp")
+(when (not (file-directory-p "~/.emacs.d/site-lisp/gulp"))
   (shell-command-to-string
-   "git clone git@github.com:stevenremot/emacs-gulpjs.git ~/.emacs.d/site-lisp/gulp"))
-
-(when (file-directory-p "~/.emacs.d/site-lisp/gulp")
+   "git clone git@github.com:Randy1Burrell/emacs-gulpjs.git ~/.emacs.d/site-lisp/gulp")
   (add-to-list 'load-path "~/.emacs.d/site-lisp/gulp")
   (require'gulpjs))
 
 ;;--------------------------------------------------------------------------------
 ;; Pull down and use languagetool
 ;;--------------------------------------------------------------------------------
-(unless (file-directory-p "~/.emacs.d/LanguageTool")
+(when (not (file-directory-p "~/.emacs.d/LanguageTool"))
   (shell-command-to-string
-   "curl -LO https://languagetool.org/download/LanguageTool-5.1.zip"))
-
-(unless (file-exists-p "~/.emacs.d/LanguageTool")
-  (shell-command-to-string
-   "unzip Languagetool-5.1.zip &&
-    mv LanguageTool-5.1 ~/.emacs.d/LanguageTool &&
-    rm LanguageTool-5.1.zip"))
+   "curl -LO https://languagetool.org/download/LanguageTool-5.1.zip")
+  (unless (file-directory-p "~/.emacs.d/LanguageTool")
+    (shell-command-to-string
+     "unzip Languagetool-5.1.zip
+      mv LanguageTool-5.1 ~/.emacs.d/LanguageTool &&
+      rm LanguageTool-5.1.zip")))
 
 (unless (not (file-directory-p "~/.emacs.d/LanguageTool"))
   (use-package langtool
