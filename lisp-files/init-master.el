@@ -62,6 +62,17 @@
   (global-set-key "\C-ct" 'google-translate-at-point))
 
 ;;--------------------------------------------------------------------------------
+;; Pull down this package from GitHub
+;;--------------------------------------------------------------------------------
+(unless (file-directory-p "~/.emacs.d/site-lisp/gulp")
+  (shell-command-to-string
+   "git clone git@github.com:stevenremot/emacs-gulpjs.git ~/.emacs.d/site-lisp/gulp"))
+
+(when (file-directory-p "~/.emacs.d/site-lisp/gulp")
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/gulp")
+  (require'gulpjs))
+
+;;--------------------------------------------------------------------------------
 ;; Pull down and use languagetool
 ;;--------------------------------------------------------------------------------
 (unless (file-directory-p "~/.emacs.d/LanguageTool")

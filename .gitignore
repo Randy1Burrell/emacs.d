@@ -57,3 +57,4 @@ site-lisp/package/
 /LanguageTool/
 /*.pws
 flycheck_*
+/site-lisp/gulp/
