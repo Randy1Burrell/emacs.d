@@ -1,0 +1,32 @@
+;;; init-journal.el --- journaling -*- lexical-binding: t -*-
+;;; Commentary: I use this as my tool for journaling.
+;;; Code:
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-packae))
+
+(defun my/org-journal-new-entry (prefix)
+  "Open today’s journal file and start a new entry.
+  With a prefix, we use the work journal; otherwise the personal journal."
+  (interactive "P")
+  (-let [org-journal-file-format (if prefix "Work-%Y-%m-%d.org" org-journal-file-format)]
+    (org-journal-new-entry nil)
+    (org-mode)
+    (org-show-all)))
+
+(use-package org-journal
+  ;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal
+  :bind (("C-c j" . my/org-journal-new-entry))
+  :config
+  (setq org-journal-dir         "~/Dropbox/journal/"
+        org-journal-file-type   'daily
+        org-journal-file-format "Personal-%Y-%m-%d.org"))
+
+(setq org-journal-enable-agenda-integration t
+      org-icalendar-store-UID t
+      org-icalendar-include-todo "all"
+      org-icalendar-combined-agenda-file "~/Dropbox/journal/org-journal.ics")
+
+;; The Setup:1 ends here
+(provide 'init-journal)
+;;; init-journal.el ends here

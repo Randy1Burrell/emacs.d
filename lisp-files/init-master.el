@@ -147,5 +147,10 @@ Prompt only if there are unsaved changes."
 (unless (package-installed-p 'zlc)
   (package-install 'zlc))
 
+(unless (package-installed-p 'eshell-git-prompt)
+  (package-install 'eshell-git-prompt))
+
+(eshell-git-prompt-use-theme 'powerline)
+
 (provide 'init-master)
 ;;; init-master.el ends here

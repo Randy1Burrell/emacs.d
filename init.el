@@ -59,13 +59,14 @@
 ;;----------------------------------------------------------------------------
 (require 'init-hydra)
 (require 'init-golang)
+(require 'init-journal)
 (require 'init-navigation)
 (require 'init-magit)
 (require 'init-restart-emacs)
 (require 'init-treemacs)
 (require 'init-phpcbf)
 (require 'init-master)
-
+(require 'init-csharp)
 ;;----------------------------------------------------------------------------
 ;; Original configurations
 ;;----------------------------------------------------------------------------
