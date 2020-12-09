@@ -26,7 +26,8 @@
 ;;--------------------------------------------------------------------------------
 ;; Frame title and dimension
 ;;--------------------------------------------------------------------------------
-(setq frame-title-format '("%b " " Bugarel is #1 (•̀ᴗ•́)"))
+(setq rb/new-frame-title (concat " " user-login-name " is the best (•̀ᴗ•́)"))
+(setq frame-title-format '("[%b] |" rb/new-frame-title))
 (setq load-prefer-newer t)
 (setq enable-local-variables :safe)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
