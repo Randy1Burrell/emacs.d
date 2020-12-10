@@ -380,12 +380,14 @@ typical word processor."
      (sql . t)
      (sqlite . t))))
 
-
+;; --------------------------------------------------------------------------------
 ;; Let's get some fancy bullets
+;; --------------------------------------------------------------------------------
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
 (use-package org-bullets
+  :ensure t
   :hook (org-mode . org-bullets-mode))
 
 (provide 'init-org)

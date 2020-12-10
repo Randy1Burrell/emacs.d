@@ -66,7 +66,8 @@
 ;;--------------------------------------------------------------------------------
 (when (not (file-directory-p "~/.emacs.d/site-lisp/gulp"))
   (shell-command-to-string
-   "git clone git@github.com:Randy1Burrell/emacs-gulpjs.git ~/.emacs.d/site-lisp/gulp")
+   "git clone git@github.com:Randy1Burrell/emacs-gulpjs.git ~/.emacs.d/site-lisp/gulp"))
+(when (file-directory-p "~/.emacs.d/site-lisp/gulp")
   (add-to-list 'load-path "~/.emacs.d/site-lisp/gulp")
   (require'gulpjs))
 
@@ -109,7 +110,7 @@
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
 (use-package editorconfig
-  :defer t)
+  :ensure t)
 
 (unless (package-installed-p 'editorconfig-generate)
   (package-install 'editorconfig-generate))
