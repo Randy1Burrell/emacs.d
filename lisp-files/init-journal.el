@@ -5,18 +5,21 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-packae))
 
-(defun my/org-journal-new-entry (prefix)
+(defun rb/org-journal-new-entry (prefix)
   "Open today’s journal file and start a new entry.
   With a prefix, we use the work journal; otherwise the personal journal."
   (interactive "P")
-  (-let [org-journal-file-format (if prefix "Work-%Y-%m-%d.org" org-journal-file-format)]
+  (-let [org-journal-file-format
+         (if prefix "Work-%Y-%m-%d.org" "Personal-%Y-%m-%d.org")]
     (org-journal-new-entry nil)
     (org-mode)
     (org-show-all)))
-
+;;----------------------------------------------------------------------------
+;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal
+;;----------------------------------------------------------------------------
 (use-package org-journal
-  ;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal
-  :bind (("C-c j" . my/org-journal-new-entry))
+  :ensure t
+  :bind (("C-c j" . rb/org-journal-new-entry))
   :config
   (setq org-journal-dir         "~/Dropbox/journal/"
         org-journal-file-type   'daily
