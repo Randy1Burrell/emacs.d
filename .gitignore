@@ -58,3 +58,4 @@ site-lisp/package/
 /*.pws
 flycheck_*
 /site-lisp/gulp/
+/site-lisp/gulp-task-runner/

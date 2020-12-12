@@ -62,14 +62,38 @@
   (global-set-key "\C-ct" 'google-translate-at-point))
 
 ;;--------------------------------------------------------------------------------
-;; Pull down this package from GitHub
+;; Function used to clone repositories use Git
 ;;--------------------------------------------------------------------------------
-(when (not (file-directory-p "~/.emacs.d/site-lisp/gulp"))
-  (shell-command-to-string
-   "git clone git@github.com:Randy1Burrell/emacs-gulpjs.git ~/.emacs.d/site-lisp/gulp"))
+(cl-defun maybe-clone (remote &optional (local (concat "~/" (file-name-base remote))))
+  "Clone a REMOTE repository if the LOCAL directory does not exist.
+
+Yields ‘repo-already-exists’ when no cloning transpires,
+otherwise yields ‘cloned-repo’.
+
+LOCAL is optional and defaults to the base name; e.g.,
+if REMOTE is https://github.com/X/Y then LOCAL becomes ~/Y."
+  (if (file-directory-p local)
+      'repo-already-exists
+    (async-shell-command (concat "git clone " remote " " local))
+    (add-to-list 'magit-repository-directories `(,local   . 0))
+    'cloned-repo))
+
+;;--------------------------------------------------------------------------------
+;; Gulp packages from GitHub
+;;--------------------------------------------------------------------------------
+(maybe-clone "git@github.com:Randy1Burrell/emacs-gulpjs.git"
+             "~/.emacs.d/site-lisp/gulp")
+(maybe-clone "git@github.com:NicolasPetton/gulp-task-runner.git"
+             "~/.emacs.d/site-lisp/gulp-task-runner")
+
 (when (file-directory-p "~/.emacs.d/site-lisp/gulp")
   (add-to-list 'load-path "~/.emacs.d/site-lisp/gulp")
   (require'gulpjs))
+
+(when (file-directory-p "~/.emacs.d/site-lisp/gulp-task-runner")
+  (add-to-list 'load-path "~/.emacs.d/site-lisp/gulp-task-runner")
+  (require 'gulp-task-runner))
+
 
 ;;--------------------------------------------------------------------------------
 ;; Pull down and use languagetool
@@ -117,8 +141,9 @@
 
 (use-package hl-todo
   :config
-  (loop for kw in '("TEST" "MA" "WK" "JC")
-        do (add-to-list 'hl-todo-keyword-faces (cons kw "#dc8cc3")))
+  (mapc (lambda (x)
+          (add-to-list 'hl-todo-keyword-faces (cons x "#dc8cc3")))
+        '("TEST" "MA" "WK" "JC"))
   (global-hl-todo-mode))
 
 (defun add-watchwords () "Add TODO: words to font-lock keywords."
