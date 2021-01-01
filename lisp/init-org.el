@@ -123,6 +123,9 @@ typical word processor."
 
 (setq org-refile-use-cache nil)
 
+;; Log note/time whenever we do a refile
+(setq org-log-refile 'note)
+
 ;; Targets include this file and any file contributing to the agenda - up to 5 levels deep
 (setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
 
@@ -161,14 +164,37 @@ typical word processor."
 ;;; To-do settings
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
-              (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
-              (sequence "WAITING(w@/!)" "DELEGATED(e!)" "HOLD(h)" "|" "CANCELLED(c@/!)")))
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d@)" "CANCELLED(c@)")
+              (sequence "HABIT(a@)" "ROUTINE(r@)" "|" "DONE(d@)" "CANCELLED(c@)")
+              (sequence "PROJECT(p@)" "|" "STARTED(s@)" "DONE(d@)" "CANCELLED(c@)")
+              (sequence "WAITING(w@)" "DELEGATED(e@)" "HOLD(h@)" "|" "CANCELLED(c@)")))
       org-todo-repeat-to-state "NEXT")
 
 (setq org-todo-keyword-faces
       (quote (("NEXT" :inherit warning)
-              ("PROJECT" :inherit font-lock-string-face))))
+              ("DONE" :inherit font-lock-comment-face)
+              ("STEP_6" . (:foreground "red" :weight bold))
+              ("HABIT" . (:foreground "coral" :weight bold))
+              ("Q2" . (:foreground "magenta3" :weight bold))
+              ("Q3" . (:foreground "DeepPink" :weight bold))
+              ("Q4" . (:foreground "OrangeRed" :weight bold))
+              ("STEP_4" . (:foreground "coral" :weight bold))
+              ("Q1" . (:foreground "SeaGreen1" :weight bold))
+              ("TODO" . (:foreground "LimeGreen" :weigth bold))
+              ("GOAL" . (:foreground "turquoise1" :weight bold))
+              ("HOLD" . (:foreground "chocolate4" :weight bold))
+              ("STEP_5" . (:foreground "OrangeRed" :weight bold))
+              ("STARTED" . (:foreground "magenta3" :weight bold))
+              ("STEP_2" . (:foreground "IndianRed" :weight bold))
+              ("LIFE_GOAL" . (:foreground "SkyBlue" :weight bold))
+              ("STEP_3" . (:foreground "IndianRed1" :weight bold))
+              ("WAITING" . (:foreground "firebrick4" :weight bold))
+              ("CANCELLED" . (:foreground "DeepPink" :weight bold))
+              ("ROUTINE" . (:foreground "PaleGreen1" :weight bold))
+              ("PROJECT" . (:foreground "DodgerBlue1" :weight bold))
+              ("DELEGATED" . (:foreground "turquoise1" :weight bold))
+              ("ALL_YEAR" . (:foreground "systemBlueColor" :weight bold))
+              )))
 
 
 
@@ -305,23 +331,15 @@ typical word processor."
 (when (and *is-a-mac* (file-directory-p "/Applications/org-clock-statusbar.app"))
   (add-hook 'org-clock-in-hook
             (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e"
-                                (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
+                                     (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
   (add-hook 'org-clock-out-hook
             (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e"
-                                "tell application \"org-clock-statusbar\" to clock out"))))
+                                     "tell application \"org-clock-statusbar\" to clock out"))))
 
 
 
 ;; TODO: warn about inconsistent items, e.g. TODO inside non-PROJECT
 ;; TODO: nested projects!
-
-
-
-;;; Archiving
-
-(setq org-archive-mark-done nil)
-(setq org-archive-location "%s_archive::* Archive")
-
 
 
 
@@ -379,6 +397,71 @@ typical word processor."
      (,(if (locate-library "ob-sh") 'sh 'shell) . t)
      (sql . t)
      (sqlite . t))))
+
+;;--------------------------------------------------------------------------------
+;; I'm making the checkbox feature work with bullets as well as the normal way.
+;; I copied this code from Sasha Chua at:
+;; https://sachachua.com/blog/2008/01/outlining-your-notes-with-org/
+;;--------------------------------------------------------------------------------
+(defun wicked/org-update-checkbox-count (&optional all)
+  "Update the checkbox statistics in the current section.
+This will find all statistic cookies like [57%] and [6/12] and
+update them with the current numbers.  With optional prefix
+argument ALL, do this for the whole buffer."
+  (interactive "P")
+  (save-excursion
+    (let* (; (buffer-invisibility-spec (org-inhibit-invisibility))
+           (beg (condition-case nil
+                    (progn (outline-back-to-heading) (point))
+                  (error (point-min))))
+           (end (move-marker
+                 (make-marker)
+                 (progn (or (outline-get-next-sibling) ;; (1)
+                            (goto-char (point-max)))
+                        (point))))
+           (re "\\(\\[[0-9]*%\\]\\)\\|\\(\\[[0-9]*/[0-9]*\\]\\)")
+           (re-box
+            "^[ \t]*\\(*+\\|[-+*]\\|[0-9]+[.)]\\) +\\(\\[[- X]\\]\\)")
+           b1 e1 f1 c-on c-off lim (cstat 0))
+      (when all
+        (goto-char (point-min))
+        (or (outline-get-next-sibling) (goto-char (point-max))) ;; (2)
+        (setq beg (point) end (point-max)))
+      (goto-char beg)
+      (while (re-search-forward re end t)
+        (setq cstat (1+ cstat)
+              b1 (match-beginning 0)
+              e1 (match-end 0)
+              f1 (match-beginning 1)
+              lim (cond
+                   ((org-on-heading-p)
+                    (or (outline-get-next-sibling) ;; (3)
+                        (goto-char (point-max)))
+                    (point))
+                   ((org-at-item-p) (org-end-of-item) (point))
+                   (t nil))
+              c-on 0 c-off 0)
+        (goto-char e1)
+        (when lim
+          (while (re-search-forward re-box lim t)
+            (if (member (match-string 2) '("[ ]" "[-]"))
+                (setq c-off (1+ c-off))
+              (setq c-on (1+ c-on))))
+          (goto-char b1)
+          (insert (if f1
+                      (format "[%d%%]" (/ (* 100 c-on)
+                                          (max 1 (+ c-on c-off))))
+                    (format "[%d/%d]" c-on (+ c-on c-off))))
+          (and (looking-at "\\[.*?\\]")
+               (replace-match ""))))
+      (when (interactive-p)
+        (message "Checkbox statistics updated %s (%d places)"
+                 (if all "in entire file" "in current outline entry")
+                 cstat)))))
+(defadvice org-update-checkbox-count (around wicked activate)
+  "Fix the built-in checkbox count to understand headlines."
+  (setq ad-return-value
+        (wicked/org-update-checkbox-count (ad-get-arg 1))))
 
 ;; --------------------------------------------------------------------------------
 ;; Let's get some fancy bullets
