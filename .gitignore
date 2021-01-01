@@ -59,3 +59,5 @@ site-lisp/package/
 flycheck_*
 /site-lisp/gulp/
 /site-lisp/gulp-task-runner/
+/timelog
+/diary

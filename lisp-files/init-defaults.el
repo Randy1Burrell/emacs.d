@@ -27,7 +27,7 @@
 ;; Frame title and dimension
 ;;--------------------------------------------------------------------------------
 (setq rb/new-frame-title (concat " " user-login-name " is the best (•̀ᴗ•́)"))
-(setq frame-title-format '("[%b] |" rb/new-frame-title))
+(setq frame-title-format '("%b --> " rb/new-frame-title))
 (setq load-prefer-newer t)
 (setq enable-local-variables :safe)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))

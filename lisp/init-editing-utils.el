@@ -76,12 +76,20 @@
 ;;; Newline behaviour
 
 (global-set-key (kbd "RET") 'newline-and-indent)
+(defun sanityinc/newline-at-start-of-line ()
+  "Move to start of line, enter a newline above, and reindent."
+  (interactive)
+  (move-beginning-of-line 1)
+  (newline-and-indent)
+  (previous-line))
+
 (defun sanityinc/newline-at-end-of-line ()
   "Move to end of line, enter a newline, and reindent."
   (interactive)
   (move-end-of-line 1)
   (newline-and-indent))
 
+(global-set-key (kbd "s-<return>") 'sanityinc/newline-at-start-of-line)
 (global-set-key (kbd "S-<return>") 'sanityinc/newline-at-end-of-line)
 
 

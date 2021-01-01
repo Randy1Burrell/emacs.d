@@ -24,8 +24,7 @@
   (add-to-list 'package-archives (cons "org" (concat proto "orgmode.org/elpa/")) t)
   (add-to-list 'package-archives (cons "gnu" (concat proto "elpa.gnu.org/packages/")) t)
   (add-to-list 'package-archives (cons "melpa" (concat proto "melpa.org/packages/")) t)
-  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "stable.melpa.org/packages/")) t)
-  )
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "stable.melpa.org/packages/")) t))
 
 
 ;; Work-around for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341

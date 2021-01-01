@@ -83,17 +83,17 @@ if REMOTE is https://github.com/X/Y then LOCAL becomes ~/Y."
 ;;--------------------------------------------------------------------------------
 (maybe-clone "git@github.com:Randy1Burrell/emacs-gulpjs.git"
              "~/.emacs.d/site-lisp/gulp")
-(maybe-clone "git@github.com:NicolasPetton/gulp-task-runner.git"
-             "~/.emacs.d/site-lisp/gulp-task-runner")
 
 (when (file-directory-p "~/.emacs.d/site-lisp/gulp")
   (add-to-list 'load-path "~/.emacs.d/site-lisp/gulp")
   (require'gulpjs))
 
+(maybe-clone "git@github.com:NicolasPetton/gulp-task-runner.git"
+             "~/.emacs.d/site-lisp/gulp-task-runner")
+
 (when (file-directory-p "~/.emacs.d/site-lisp/gulp-task-runner")
   (add-to-list 'load-path "~/.emacs.d/site-lisp/gulp-task-runner")
   (require 'gulp-task-runner))
-
 
 ;;--------------------------------------------------------------------------------
 ;; Pull down and use languagetool
@@ -143,12 +143,12 @@ if REMOTE is https://github.com/X/Y then LOCAL becomes ~/Y."
   :config
   (mapc (lambda (x)
           (add-to-list 'hl-todo-keyword-faces (cons x "#dc8cc3")))
-        '("TEST" "MA" "WK" "JC"))
+        '("TEST" "MA" "WK" "JC" "NOTE"))
   (global-hl-todo-mode))
 
 (defun add-watchwords () "Add TODO: words to font-lock keywords."
        (font-lock-add-keywords nil
-                               '(("\\(\\<TODO\\|\\<FIXME\\|\\<HACK\\|@.+\\):" 1
+                               '(("\\(\\<TODO\\|\\<FIXME\\|\\<HACK\\|\\<NOTE\\|@.+\\):" 1
                                   font-lock-warning-face t))))
 
 (add-hook 'prog-mode-hook #'add-watchwords)

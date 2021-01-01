@@ -10,19 +10,30 @@
   With a prefix, we use the work journal; otherwise the personal journal."
   (interactive "P")
   (-let [org-journal-file-format
-         (if prefix "Work-%Y-%m-%d.org" "Personal-%Y-%m-%d.org")]
+         (if prefix
+             (if (or (= prefix 1) (= prefix 2))
+                 "Planner-%y-%m-%d.org"
+               "Work-%Y-%m-%d.org")
+           "Personal-%Y-%m-%d.org")]
     (org-journal-new-entry nil)
     (org-mode)
-    (org-show-all)))
-;;----------------------------------------------------------------------------
-;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal
-;;----------------------------------------------------------------------------
+    (org-show-all))
+  (when (= prefix 1)
+    (make-frame-command)
+    (split-window-horizontally)
+    (org-agenda nil "g")
+    (split-window-vertically)
+    (other-window 1)
+    (org-agenda nil "p")))
+;;------------------------------------------------------------------------------
+;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal ;; C-u 1 C-c j Planner
+;;------------------------------------------------------------------------------
 (use-package org-journal
   :ensure t
   :bind (("C-c j" . rb/org-journal-new-entry))
   :config
   (setq org-journal-dir         "~/Dropbox/journal/"
-        org-journal-file-type   'daily
+        org-journal-file-type   'yearly
         org-journal-file-format "Personal-%Y-%m-%d.org"))
 
 (setq org-journal-enable-agenda-integration t
