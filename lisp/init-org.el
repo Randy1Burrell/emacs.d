@@ -48,8 +48,14 @@
       org-export-coding-system 'utf-8
       org-fast-tag-selection-single-key 'expert
       org-html-validation-link nil
+      org-return-follows-link t
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-timestamp-if-done t
       org-export-kill-product-buffer-when-displayed t
-      org-tags-column 80)
+      org-tags-column -80
+      org-agenda-tags-column -80
+      org-archive-mark-done nil
 
 
 ;; Lots of stuff from http://doc.norang.ca/org-mode.html

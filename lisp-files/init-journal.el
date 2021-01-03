@@ -19,12 +19,14 @@
     (org-mode)
     (org-show-all))
   (when (= prefix 1)
-    (make-frame-command)
     (split-window-horizontally)
+    (other-window 1)
     (org-agenda nil "g")
+    ;; (make-frame-command)
     (split-window-vertically)
     (other-window 1)
-    (org-agenda nil "p")))
+    (org-agenda nil "p")
+    (other-window 1)))
 ;;------------------------------------------------------------------------------
 ;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal ;; C-u 1 C-c j Planner
 ;;------------------------------------------------------------------------------

@@ -49,7 +49,8 @@
 ;;--------------------------------------------------------------------------------
 ;; Buffer manipulation
 ;;--------------------------------------------------------------------------------
-(global-set-key (kbd "s-b") 'ivy-switch-buffer)
+(global-set-key (kbd "s-b") 'counsel-switch-buffer)
+(global-set-key (kbd "s-M-b") 'ivy-switch-buffer)
 
 ;;--------------------------------------------------------------------------------
 ;; Kill this buffer.
