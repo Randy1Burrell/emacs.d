@@ -77,7 +77,8 @@ instead."
 
 (when (maybe-require-package 'swiper)
   (with-eval-after-load 'ivy
-    (define-key ivy-mode-map (kbd "M-s /") 'swiper-thing-at-point)))
+    (define-key ivy-mode-map (kbd "M-s /") 'swiper-thing-at-point)
+    (define-key ivy-mode-map (kbd "C-s") 'swiper)))
 
 
 (when (maybe-require-package 'ivy-xref)

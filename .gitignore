@@ -61,3 +61,5 @@ flycheck_*
 /site-lisp/gulp-task-runner/
 /timelog
 /diary
+/emojis/
+/persp-confs/

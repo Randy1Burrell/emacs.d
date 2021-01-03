@@ -24,6 +24,7 @@
 (global-visual-line-mode 0)
 
 (use-package flyspell
+  :ensure t
   :diminish
   :hook ((prog-mode . flyspell-prog-mode)
          ((org-mode text-mode) . flyspell-mode)))
@@ -48,6 +49,7 @@
 
 ;;--------------------------------------------------------------------------------
 (use-package wordnut
+  :ensure t
   :bind ("M-!" . wordnut-lookup-current-word))
 
 ;;--------------------------------------------------------------------------------

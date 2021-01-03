@@ -57,7 +57,27 @@
 ;; Re-align tags when window shape changes
 (with-eval-after-load 'org-agenda
   (add-hook 'org-agenda-mode-hook
-            (lambda () (add-hook 'window-configuration-change-hook 'org-agenda-align-tags nil t))))
+            (lambda () (add-hook
+                   'window-configuration-change-hook
+                   'org-agenda-align-tags nil t))))
+
+;; Set org-modules I want to use
+(setq org-modules
+      '(ol-bbdb
+        ol-bibtex
+        org-crypt
+        ol-docview
+        ol-eww
+        ol-gnus
+        org-habit
+        ol-info
+        ol-irc
+        ol-rmail
+        ol-w3m
+        ol-eshell
+        ol-bookmark
+        org-checklist
+        org-toc))
 
 
 
@@ -398,11 +418,11 @@ typical word processor."
      (sql . t)
      (sqlite . t))))
 
-;;--------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; I'm making the checkbox feature work with bullets as well as the normal way.
 ;; I copied this code from Sasha Chua at:
 ;; https://sachachua.com/blog/2008/01/outlining-your-notes-with-org/
-;;--------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 (defun wicked/org-update-checkbox-count (&optional all)
   "Update the checkbox statistics in the current section.
 This will find all statistic cookies like [57%] and [6/12] and
@@ -463,9 +483,9 @@ argument ALL, do this for the whole buffer."
   (setq ad-return-value
         (wicked/org-update-checkbox-count (ad-get-arg 1))))
 
-;; --------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Let's get some fancy bullets
-;; --------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
