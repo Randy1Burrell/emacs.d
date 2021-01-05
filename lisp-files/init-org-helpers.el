@@ -185,35 +185,6 @@ the line we want to be at."
 (org-clock-persistence-insinuate)
 
 ;; Show lot of clocking history
-(setq org-clock-history-length 23)
-
-;; Resume clocking task on clock-in if the clock is open
-(setq org-clock-in-resume t)
-
-;; Sometimes I change tasks I'm clocking quickly ---this removes clocked tasks with 0:00 duration
-(setq org-clock-out-remove-zero-time-clocks t)
-
-;; Clock out when moving task to a done state
-(setq org-clock-out-when-done t)
-
-;; Save the running clock and all clock history when exiting Emacs, load it on startup
-(setq org-clock-persist t)
-
-;; Do not prompt to resume an active clock
-(setq org-clock-persist-query-resume nil)
-
-;; Include current clocking task in clock reports
-(setq org-clock-report-include-clocking-task t)
-
-(push '("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
-      org-global-properties)
-
-;; Show habits for every day in the agenda.
-(setq org-habit-show-habits nil)
-(setq org-habit-show-habits-only-for-today nil)
-
-;; This shows the ‘Seinfeld consistency’ graph closer to the habit heading.
-(setq org-habit-graph-column 90)
 
 (provide 'init-org-helpers)
 ;;; init-org-helpers.el ends here

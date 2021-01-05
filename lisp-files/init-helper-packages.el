@@ -7,14 +7,12 @@
 
 (use-package undo-tree
   :ensure t
-  :diminish ;; Don't show an icon in the modeline
+  :diminish
   :config
   ;; Always have it on
   (global-undo-tree-mode)
-
   ;; Each node in the undo tree should have a timestamp.
   (setq undo-tree-visualizer-timestamps t)
-
   ;; Show a diff window displaying changes between undo nodes.
   (setq undo-tree-visualizer-diff t))
 
@@ -129,17 +127,6 @@
   :defer t
   :custom (glc-default-span 0))
 
-(cl-defun rb/company-backend-with-yankpad (backend)
-  "There can only be one main completion BACKEND.
-Let's enable yasnippet/yankpad as a secondary for all
-completion backends.
-Src: https://emacs.stackexchange.com/a/10520/10352"
-
-  (if (and (listp backend) (member 'company-yankpad backend))
-      backend
-    (append (if (consp backend) backend (list backend))
-            '(:with company-yankpad))))
-
 ;; Yet another snippet extension program
 (use-package yasnippet
   :ensure t
@@ -148,41 +135,6 @@ Src: https://emacs.stackexchange.com/a/10520/10352"
   (yas-global-mode 1) ;; Always have this on for when using yasnippet syntax within yankpad
   ;; respect the spacing in my snippet declarations
   (setq yas-indent-line 'fixed))
-
-;; Alternative, Org-based extension program
-(use-package yankpad
-  :ensure t
-  :defer 10
-  :diminish
-  :init
-  ;; Location of templates
-  (setq yankpad-file "~/.emacs.d/yankpad.org")
-  ;; Ignore major mode, always use defaults.
-  ;; Yankpad will freeze if no org heading has the name of the given category.
-  (setq yankpad-category "Default")
-  ;; Set company-backend as a secondary completion backend to all existing backends.
-  ;; https://emacs.stackexchange.com/questions/10431/get-company-to-show-suggestions-for-yasnippet-names/10520#10520
-  (setq company-backends (mapcar #'rb/company-backend-with-yankpad company-backends))
-  :config
-  (bind-key "<f9>" 'yankpad-map)
-  (bind-key "<f12>" 'yankpad-expand)
-  ;; If you want to complete snippets using company-mode
-  ;; (add-to-list 'company-backends #'company-yankpad)
-  ;; If you want to expand snippets with hippie-expand
-  (add-to-list 'hippie-expand-try-functions-list #'yankpad-expand))
-
-(cl-defun org-insert-link ()
-  "Make an org link by inserting the URL copied to clipboard;
-and prompting for the link description only.
-
-  Type over the shown link to change it, or tab to move to the
-  description field.
-
-  This overrides Org-mode's built-in ‘org-insert-link’ utility;
-  whence C-c C-l uses the snippet."
-  (interactive)
-  (insert "rb_org_insert_link")
-  (yankpad-expand))
 
 (provide 'init-helper-packages)
 ;;; init-helper-packages.el ends here

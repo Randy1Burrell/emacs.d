@@ -55,8 +55,30 @@
       org-export-kill-product-buffer-when-displayed t
       org-tags-column -80
       org-agenda-tags-column -80
+      ;; This shows the ‘Seinfeld consistency’ graph closer to the habit heading.
+      org-habit-graph-column 50
+      org-clock-history-length 23
+      org-clock-in-resume t
       org-archive-mark-done nil
+      ;; Sometimes I change tasks I'm clocking quickly
+      ;; ---this removes clocked tasks with 0:00 duration
+      org-clock-out-remove-zero-time-clocks t
+      ;; Clock out when moving task to a done state
+      org-clock-out-when-done t
+      ;; Save the running clock and all clock history
+      ;; when exiting Emacs, load it on startup
+      org-clock-persist t
+      ;; Prompt to resume an active clock
+      org-clock-persist-query-resume t
+      ;; Include current clocking task in clock reports
+      org-clock-report-include-clocking-task t
+      ;; Show habits for every day in the agenda.
+      org-habit-show-habits t
+      org-habit-show-habits-only-for-today nil
+      ;; Set archive location
 
+(push '("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
+      org-global-properties)
 
 ;; Lots of stuff from http://doc.norang.ca/org-mode.html
 

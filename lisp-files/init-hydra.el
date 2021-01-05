@@ -29,10 +29,5 @@
   ("l" enlarge-window-horizontally     "widen"   )
   ("s" switch-window-then-swap-buffer  "swap" :color teal))
 
-(defhydra perspective (global-map    "C-c y"   )
-  ("a" persp-add-new              "add new persp")
-  ("p" persp-mode                 "persp mode"   )
-  ("s" persp-switch               "switch"       ))
-
 (provide 'init-hydra)
 ;;; init-hydra.el ends here
