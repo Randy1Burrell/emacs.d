@@ -62,7 +62,7 @@
                  (when (string-equal x (file-name-extension buffer-file-name))
                    (setup-tide-mode)
                    (prettier-js-mode)))))
-   '("scss" "sass" "html" "htm" "css" "js" "ts" "jsx" "tsx")))
+   '("js" "ts" "jsx" "tsx")))
 
 (rb/prettier)
 ;;--------------------------------------------------------------------------------
