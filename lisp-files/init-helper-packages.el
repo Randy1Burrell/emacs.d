@@ -138,18 +138,10 @@
 
 (use-package yankpad
   :ensure t
-  :defer 10
-  ;; :init
-  ;; I prefer to set org-mode's default and have Yankpad read my files there
-  ;; (setq yankpad-file "~/.emacs.d/yankpad.org")
   :config
   (bind-key "<f9>" 'yankpad-map)
   (bind-key "<f12>" 'yankpad-expand)
-  ;; If you want to complete snippets using company-mode
-  (add-to-list 'company-backends #'company-yankpad)
-  ;; If you want to expand snippets with hippie-expand
-  (add-to-list 'hippie-expand-try-functions-list #'yankpad-expand))
-
+  (bind-key "C-c s" 'yankpad-insert))
 
 (provide 'init-helper-packages)
 ;;; init-helper-packages.el ends here

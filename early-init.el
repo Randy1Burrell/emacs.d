@@ -10,6 +10,12 @@
 
 (setq package-enable-at-startup nil)
 
+;; Don't warn me about deprecated cl packages
+(setq byte-compile-warnings '(cl-functions))
+
+;; Don't warn me about redefinition
+(setq ad-redefinition-action 'accept)
+
 ;; So we can detect this having been loaded
 (provide 'early-init)
 
