@@ -136,6 +136,9 @@
   ;; respect the spacing in my snippet declarations
   (setq yas-indent-line 'fixed))
 
+(use-package yasnippet-snippets
+  :ensure t)
+
 (use-package yankpad
   :ensure t
   :config
