@@ -46,6 +46,12 @@
     (add-hook 'company-after-completion-hook 'sanityinc/page-break-lines-maybe-reenable)))
 
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
 
 (provide 'init-company)
 ;;; init-company.el ends here

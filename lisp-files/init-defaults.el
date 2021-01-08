@@ -77,6 +77,10 @@
 ;;----------------------------------------------------------------------------
 (setq explicit-shell-file-name "/bin/zsh")
 
+;;----------------------------------------------------------------------------
+;; Delete trailing white-spaces
+;;----------------------------------------------------------------------------
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
 
 (provide 'init-defaults)
 ;;; init-defaults.el ends here

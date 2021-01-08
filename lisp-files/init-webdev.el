@@ -62,7 +62,7 @@
                  (when (string-equal x (file-name-extension buffer-file-name))
                    (setup-tide-mode)
                    (prettier-js-mode)))))
-   '("js" "ts" "jsx" "tsx")))
+   '("ts" "jsx" "tsx")))
 
 (rb/prettier)
 ;;--------------------------------------------------------------------------------
@@ -74,9 +74,7 @@
   (mapc
    (lambda (x)
      (add-to-list 'auto-mode-alist (cons x 'web-mode)))
-   '("\\.css\\'" "\\.htm\\'" "\\.html\\'" "\\.js\\'"
-     "\\.jsx\\'" "\\.php\\'" "\\.sass\\'" "\\.scss\\'"
-     "\\.ts\\'" "\\.tsx\\'")))
+   '("\\.jsx\\'" "\\.php\\'" "\\.ts\\'" "\\.tsx\\'")))
 
 (rb/web-mode)
 ;;--------------------------------------------------------------------------------
@@ -104,10 +102,14 @@
 ;;--------------------------------------------------------------------------------
 ;; Run emmet-mode in web-mode
 ;;--------------------------------------------------------------------------------
-(unless (package-installed-p 'emmet-mode)
-  (package-install 'emmet-mode))
-
-(add-hook 'web-mode-hook  'emmet-mode)
+(use-package emmet-mode
+  :init
+  (bind-key "C-<return>" 'emmet-expand-line)
+  (bind-key "s-8" 'emmet-prev-edit-point)
+  (bind-key "s-9" 'emmet-next-edit-point)
+  (add-hook 'web-mode-hook  'emmet-mode)
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook  'emmet-mode))
 
 ;;--------------------------------------------------------------------------------
 ;; An auto complete hook for CSS and PHP

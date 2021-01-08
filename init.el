@@ -64,6 +64,7 @@
 ;; Added after forking repository
 ;;----------------------------------------------------------------------------
 (require 'init-hydra)
+(require 'init-lsp)
 (require 'init-golang)
 (require 'init-journal)
 (require 'init-navigation)
