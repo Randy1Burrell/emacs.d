@@ -6,7 +6,6 @@
   (package-install 'use-package))
 
 (use-package undo-tree
-  :ensure t
   :diminish
   :config
   ;; Always have it on
@@ -17,50 +16,34 @@
   (setq undo-tree-visualizer-diff t))
 
 (use-package company-emoji
-  :ensure t
   :config (add-to-list 'company-backends 'company-emoji))
 
 (use-package emojify
-  :ensure t
   :config (setq emojify-display-style 'image)
   :init (global-emojify-mode 1)) ;; This will install missing images if needed.
 
 (use-package synosaurus
-  :ensure t
   :diminish synosaurus-mode
   :init    (synosaurus-mode)
   :config  (setq synosaurus-choose-method 'popup) ;; 'ido is default.
   (global-set-key (kbd "M-#") 'synosaurus-choose-and-replace))
 
-(use-package s
-  :ensure t)
+(use-package s)
 
-(use-package f
-  :ensure t)
+(use-package f)
 
-(use-package haskell-mode
-  :ensure t)
+(use-package haskell-mode)
 
-(use-package dash
-  :ensure t)
+(use-package dash)
 
-(use-package toc-org
-  :ensure t
-  ;; Automatically update toc when saving an Org file.
-  :hook (org-mode . toc-org-mode)
-  ;; Use both “:ignore_N:” and ":export_N:” to exlude headings from the TOC.
-  :custom (toc-org-noexport-regexp
-           "\\(^*+\\)\s+.*:\\(ignore\\|noexport\\)\\([@_][0-9]\\)?:\\($\\|[^ ]*?:$\\)"))
+(use-package persp-mode)
 
-(use-package persp-mode
-  :ensure t)
-
-(use-package persp-mode-projectile-bridge
-  :ensure t)
+(use-package persp-mode-projectile-bridge)
 
 (with-eval-after-load "persp-mode-autoloads"
   (setq wg-morph-on nil) ;; switch off animation
   (setq persp-autokill-buffer-on-remove 'kill-weak)
+  (setq persp-mode-projectile-bridge-mode t)
   (add-hook 'window-setup-hook #'(lambda () (persp-mode 1))))
 
 (with-eval-after-load "persp-mode"
@@ -84,14 +67,12 @@
 
 (use-package origami
   ;; In Lisp languages, by default only function definitions are folded.
-  :ensure t
   :hook ((agda2-mode lisp-mode c-mode) . origami-mode)
   :config
   (push '(agda2-mode . (origami-markers-parser "{-" "-}"))
         origami-parser-alist))
 
 (use-package writegood-mode
-  :ensure t
   ;; Load this whenver I'm composing prose.
   :hook (text-mode org-mode)
   ;; Don't show me the “Wg” marker in the mode line
@@ -107,7 +88,6 @@
 ;; ↯ What is the evidence of highighted phrase? ↯
 
 (use-package smartscan
-  :ensure t
   :defer t
   :config
   (global-set-key (kbd "M-n") 'smartscan-symbol-go-forward)
@@ -129,18 +109,15 @@
 
 ;; Yet another snippet extension program
 (use-package yasnippet
-  :ensure t
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1) ;; Always have this on for when using yasnippet syntax within yankpad
   ;; respect the spacing in my snippet declarations
   (setq yas-indent-line 'fixed))
 
-(use-package yasnippet-snippets
-  :ensure t)
+(use-package yasnippet-snippets)
 
 (use-package yankpad
-  :ensure t
   :config
   (bind-key "<f9>" 'yankpad-map)
   (bind-key "<f12>" 'yankpad-expand)

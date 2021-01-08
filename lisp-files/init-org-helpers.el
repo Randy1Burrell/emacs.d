@@ -6,7 +6,6 @@
   (package-install 'use-package))
 
 (use-package org-sticky-header
-  :ensure t
   :hook (org-mode . org-sticky-header-mode)
   :config
   (setq-default
@@ -130,7 +129,6 @@ the line we want to be at."
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
 (use-package org-pretty-tags
-  :ensure t
   :diminish org-pretty-tags-mode
   :demand t
   :config
@@ -159,7 +157,6 @@ the line we want to be at."
         (?D :foreground "green" :weight bold-italic)))
 
 (use-package org-fancy-priorities
-  :ensure t
   :diminish t
   :hook   (org-mode . org-fancy-priorities-mode)
   :custom (org-fancy-priorities-list '("HIGH" "MID" "LOW" "OPTIONAL")))

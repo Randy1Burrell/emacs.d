@@ -22,7 +22,6 @@
 (global-set-key (kbd "s-]") 'other-window)
 
 (use-package buffer-flip
-  :ensure t
   :config
   (setq buffer-flip-skip-patterns
         '("^\\*"

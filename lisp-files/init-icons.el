@@ -7,8 +7,7 @@
 
 ;; Only do this once:
 (when nil
-  (use-package all-the-icons
-    :ensure t)
+  (use-package all-the-icons)
   (all-the-icons-install-fonts 'install-without-asking))
 
 ;; :-)
@@ -19,7 +18,6 @@
 
 ;; While we're at it: Make dired, ‘dir’ectory ‘ed’itor, look pretty
 (use-package all-the-icons-dired
-  :ensure t
   :hook (dired-mode . all-the-icons-dired-mode))
 
 (provide 'init-icons)

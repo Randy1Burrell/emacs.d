@@ -63,6 +63,7 @@
 ;;----------------------------------------------------------------------------
 ;; Added after forking repository
 ;;----------------------------------------------------------------------------
+(require 'init-use-package)
 (require 'init-hydra)
 (require 'init-lsp)
 (require 'init-golang)

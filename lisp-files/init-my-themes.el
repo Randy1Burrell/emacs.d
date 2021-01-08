@@ -6,7 +6,6 @@
   (package-install 'use-package))
 ;; When using helm & info & default, mode line looks prettier.
 (use-package spaceline
-  :ensure t
   :custom (spaceline-buffer-encoding-abbrev-p nil)
   ;; Use an arrow to seperate modeline information
   (powerline-default-separator 'arrow)

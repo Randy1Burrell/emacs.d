@@ -24,7 +24,6 @@
 (global-visual-line-mode 0)
 
 (use-package flyspell
-  :ensure t
   :diminish
   :hook ((prog-mode . flyspell-prog-mode)
          ((org-mode text-mode) . flyspell-mode)))
@@ -49,7 +48,6 @@
 
 ;;--------------------------------------------------------------------------------
 (use-package wordnut
-  :ensure t
   :bind ("M-!" . wordnut-lookup-current-word))
 
 ;;--------------------------------------------------------------------------------
@@ -111,7 +109,6 @@ if REMOTE is https://github.com/X/Y then LOCAL becomes ~/Y."
 
 (unless (not (file-directory-p "~/.emacs.d/LanguageTool"))
   (use-package langtool
-    :ensure t
     :custom
     (langtool-language-tool-jar
      "~/.emacs.d/LanguageTool/languagetool-commandline.jar")))
@@ -135,8 +132,7 @@ if REMOTE is https://github.com/X/Y then LOCAL becomes ~/Y."
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
-(use-package editorconfig
-  :ensure t)
+(use-package editorconfig)
 
 (unless (package-installed-p 'editorconfig-generate)
   (package-install 'editorconfig-generate))

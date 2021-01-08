@@ -31,7 +31,6 @@
 ;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal ;; C-u 1 C-c j Planner
 ;;------------------------------------------------------------------------------
 (use-package org-journal
-  :ensure t
   :bind (("C-c j" . rb/org-journal-new-entry))
   :config
   (setq org-journal-dir         "~/Dropbox/journal/"
