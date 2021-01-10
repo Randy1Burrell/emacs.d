@@ -18,15 +18,17 @@
     (org-journal-new-entry nil)
     (org-mode)
     (org-show-all))
-  (when (= prefix 1)
+  (when (= prefix 2)
+    (insert "Weekly Planning\n")
+    (sanityinc/toggle-delete-other-windows)
     (split-window-horizontally)
     (other-window 1)
     (org-agenda nil "g")
-    ;; (make-frame-command)
     (split-window-vertically)
     (other-window 1)
     (org-agenda nil "p")
-    (other-window 1)))
+    (other-window 1)
+    (yankpad-insert)))
 ;;------------------------------------------------------------------------------
 ;; C-u C-c j ⇒ Work journal ;; C-c C-j ⇒ Personal journal ;; C-u 1 C-c j Planner
 ;;------------------------------------------------------------------------------

@@ -11,8 +11,8 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
-(use-package lsp-ui
-  :commands lsp-ui-mode)
+;; (use-package lsp-ui
+;;   :commands lsp-ui-mode)
 
 (setq lsp-keymap-prefix "s-8"
       lsp-ui-doc-enable t
@@ -21,14 +21,6 @@
       lsp-ui-imenu-enable t
       lsp-ui-flycheck-enable t)
 
-;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-;; optionally if you want to use debugger
-;; (use-package dap-mode)
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
-;;  which-key integration
 (use-package which-key
   :config
   (which-key-mode))

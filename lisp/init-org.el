@@ -228,7 +228,7 @@ typical word processor."
               ("Q4" . (:foreground "OrangeRed" :weight bold))
               ("STEP_4" . (:foreground "coral" :weight bold))
               ("Q1" . (:foreground "SeaGreen1" :weight bold))
-              ("TODO" . (:foreground "LimeGreen" :weigth bold))
+              ("TODO" . (:foreground "LimeGreen" :weight bold))
               ("GOAL" . (:foreground "turquoise1" :weight bold))
               ("HOLD" . (:foreground "chocolate4" :weight bold))
               ("STEP_5" . (:foreground "OrangeRed" :weight bold))

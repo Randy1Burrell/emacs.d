@@ -82,9 +82,9 @@
 (use-package treemacs-magit
   :after treemacs magit)
 
-(use-package treemacs-persp
-  :after treemacs persp-mode
+(use-package treemacs-perspective
+  :after treemacs perspective
   :config (treemacs-set-scope-type 'Perspectives))
 
 (provide 'init-treemacs)
-;;; init-trremacs.el ends here
+;;; init-treemacs.el ends here

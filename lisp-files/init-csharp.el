@@ -1,5 +1,6 @@
 ;;; init-csharp.el --- Provides omnisharp -*- lexical-binding: t -*-
-;;; Commentary: csharp intellisense like bindings
+;;; Commentary:
+;; csharp intellisense like bindings
 ;;; Code:
 
 (unless (package-installed-p 'omnisharp)
