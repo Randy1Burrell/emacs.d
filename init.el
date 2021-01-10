@@ -67,7 +67,6 @@
 (require 'init-hydra)
 (require 'init-lsp)
 (require 'init-golang)
-(require 'init-journal)
 (require 'init-navigation)
 (require 'init-magit)
 (require 'init-restart-emacs)
@@ -233,6 +232,16 @@
 ;; Add some shell scripting completion engines
 ;;----------------------------------------------------------------------------
 (require 'init-shell)
+
+;;----------------------------------------------------------------------------
+;; Perspective
+;;---------------------------------------------------------------------------
+(require 'init-perspective)
+
+;;----------------------------------------------------------------------------
+;; Journaling
+;;----------------------------------------------------------------------------
+(require 'init-journal)
 
 
 (provide 'init)

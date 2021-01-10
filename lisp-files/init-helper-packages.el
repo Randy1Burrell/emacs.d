@@ -36,35 +36,6 @@
 
 (use-package dash)
 
-(use-package persp-mode)
-
-(use-package persp-mode-projectile-bridge)
-
-(with-eval-after-load "persp-mode-autoloads"
-  (setq wg-morph-on nil) ;; switch off animation
-  (setq persp-autokill-buffer-on-remove 'kill-weak)
-  (setq persp-mode-projectile-bridge-mode t)
-  (add-hook 'window-setup-hook #'(lambda () (persp-mode 1))))
-
-(with-eval-after-load "persp-mode"
-  (with-eval-after-load "ivy"
-    (add-hook 'ivy-ignore-buffers
-              #'(lambda (b)
-                  (when persp-mode
-                    (let ((persp (get-current-persp)))
-                      (if persp
-                          (not (persp-contain-buffer-p b persp))
-                        nil)))))
-
-    (setq ivy-sort-functions-alist
-          (append ivy-sort-functions-alist
-                  '((persp-kill-buffer   . nil)
-                    (persp-remove-buffer . nil)
-                    (persp-add-buffer    . nil)
-                    (persp-switch        . nil)
-                    (persp-window-switch . nil)
-                    (persp-frame-switch  . nil))))))
-
 (use-package origami
   ;; In Lisp languages, by default only function definitions are folded.
   :hook ((agda2-mode lisp-mode c-mode) . origami-mode)
@@ -118,6 +89,7 @@
 (use-package yasnippet-snippets)
 
 (use-package yankpad
+  :defer 10
   :config
   (bind-key "<f9>" 'yankpad-map)
   (bind-key "<f12>" 'yankpad-expand)
