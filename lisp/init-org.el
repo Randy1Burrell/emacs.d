@@ -89,6 +89,23 @@
                    'window-configuration-change-hook
                    'org-agenda-align-tags nil t))))
 
+;;----------------------------------------------------------------------------
+;; Let's get some fancy bullets
+;;----------------------------------------------------------------------------
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(use-package org-bullets
+  :hook (org-mode . org-bullets-mode))
+
+(use-package toc-org
+  ;; Automatically update toc when saving an Org file.
+  :hook (org-mode . toc-org-mode)
+  ;; Use both “:ignore_N:” and ":export_N:” to exlude headings from the TOC.
+  :custom (toc-org-noexport-regexp
+           "\\(^*+\\)\s+.*:\\(ignore\\|noexport\\)\\([@_][0-9]\\)?:\\($\\|[^ ]*?:$\\)"))
+
+
 ;; Set org-modules I want to use
 (setq org-modules
       '(ol-bbdb
@@ -234,6 +251,7 @@ typical word processor."
               ("STEP_5" . (:foreground "OrangeRed" :weight bold))
               ("STARTED" . (:foreground "magenta3" :weight bold))
               ("STEP_2" . (:foreground "IndianRed" :weight bold))
+              ("PLANNER" . (:foreground "LimeGreen" :weight bold))
               ("LIFE_GOAL" . (:foreground "SkyBlue" :weight bold))
               ("STEP_3" . (:foreground "IndianRed1" :weight bold))
               ("WAITING" . (:foreground "firebrick4" :weight bold))
@@ -518,8 +536,14 @@ argument ALL, do this for the whole buffer."
   (package-install 'use-package))
 
 (use-package org-bullets
-  :ensure t
   :hook (org-mode . org-bullets-mode))
+
+(use-package toc-org
+  ;; Automatically update toc when saving an Org file.
+  :hook (org-mode . toc-org-mode)
+  ;; Use both “:ignore_N:” and ":export_N:” to exlude headings from the TOC.
+  :custom (toc-org-noexport-regexp
+           "\\(^*+\\)\s+.*:\\(ignore\\|noexport\\)\\([@_][0-9]\\)?:\\($\\|[^ ]*?:$\\)"))
 
 (provide 'init-org)
 ;;; init-org.el ends here
