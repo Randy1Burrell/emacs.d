@@ -66,7 +66,7 @@
   (global-set-key (kbd "M-'") 'rb/symbol-replace))
 
 (defun rb/symbol-replace (replacement)
-  "Replace all standalone symbols in the buffer matching the one at point."
+  "REPLACEMENT of all standalone symbols in the buffer matching the one at point."
   (interactive  (list (read-from-minibuffer "Replacement for thing at point: " nil)))
   (save-excursion
     (let ((symbol (or (thing-at-point 'symbol) (error "No symbol at point!"))))
