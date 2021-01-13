@@ -8,7 +8,6 @@
 
 (use-package lsp-mode
   :defer t
-  :hook ((lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
 ;; (use-package lsp-ui
@@ -20,10 +19,6 @@
       lsp-ui-sideline-enable t
       lsp-ui-imenu-enable t
       lsp-ui-flycheck-enable t)
-
-(use-package which-key
-  :config
-  (which-key-mode))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
