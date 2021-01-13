@@ -17,4 +17,8 @@
 
 (add-hook 'kill-emacs-hook #'persp-state-save)
 
+(use-package persp-projectile
+  :bind (("s-p" . projectile-persp-switch-project)))
+
 (provide 'init-perspective)
+;;; init-perspective.el ends here
