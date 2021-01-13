@@ -15,9 +15,6 @@
   ;; Show a diff window displaying changes between undo nodes.
   (setq undo-tree-visualizer-diff t))
 
-(use-package company-emoji
-  :config (add-to-list 'company-backends 'company-emoji))
-
 (use-package emojify
   :config (setq emojify-display-style 'image)
   :init (global-emojify-mode 1)) ;; This will install missing images if needed.
@@ -35,6 +32,8 @@
 (use-package haskell-mode)
 
 (use-package dash)
+
+(use-package lorem-ipsum)
 
 (use-package origami
   ;; In Lisp languages, by default only function definitions are folded.

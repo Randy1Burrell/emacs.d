@@ -53,5 +53,8 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
+(use-package company-emoji
+  :config (add-to-list 'company-backends 'company-emoji))
+
 (provide 'init-company)
 ;;; init-company.el ends here
