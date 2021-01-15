@@ -9,6 +9,7 @@
 (use-package perspective
   :config
   (setq persp-state-default-file "~/.emacs.d/persp-confs/persp-auto-save")
+  :init
   (persp-mode)
   :bind (("s-b" . persp-counsel-switch-buffer)
          ("s-M-b" . persp-ivy-switch-buffer)

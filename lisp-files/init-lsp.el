@@ -10,8 +10,8 @@
   :defer t
   :commands lsp)
 
-;; (use-package lsp-ui
-;;   :commands lsp-ui-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
 (setq lsp-keymap-prefix "s-8"
       lsp-ui-doc-enable t
