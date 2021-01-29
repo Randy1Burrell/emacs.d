@@ -16,14 +16,6 @@
 (display-time)
 
 ;;----------------------------------------------------------------------------
-;; Set up line number
-;;----------------------------------------------------------------------------
-(setq display-line-numbers-width-start t)
-(global-display-line-numbers-mode      t)
-(setq display-line-numbers-type 'relative)
-(column-number-mode t)
-
-;;----------------------------------------------------------------------------
 ;; Frame title and dimension
 ;;----------------------------------------------------------------------------
 (setq rb/new-frame-title (concat " " user-login-name " is the best (•̀ᴗ•́)"))
@@ -81,6 +73,12 @@
 ;; Delete trailing white-spaces
 ;;----------------------------------------------------------------------------
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
+
+;;----------------------------------------------------------------------------
+;; Use esc to exit mini-buffer
+;;----------------------------------------------------------------------------
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
 
 (provide 'init-defaults)
 ;;; init-defaults.el ends here

@@ -9,6 +9,8 @@
   :defer t
   :config
   (setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")
+  (setq compilation-scroll-output t
+        compilation-window-height 14)
   (setq compilation-read-command nil))
 
 (add-hook 'go-mode-hook
@@ -57,9 +59,6 @@
 (add-hook 'compilation-mode-hook 'my-compilation-hook)
 
 (global-set-key (kbd "C-x C-'") 'comment-or-uncomment-region)
-
-(setq compilation-scroll-output t
-      compilation-window-height 14)
 
 (provide 'init-golang)
 ;;; init-golang.el ends here

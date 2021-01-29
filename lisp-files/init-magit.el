@@ -97,5 +97,7 @@
 ;; Trying to solve slow commits in lager reposittories
 (remove-hook 'server-switch-hook 'magit-commit-diff)
 
+(use-package forge)
+
 (provide 'init-magit)
 ;;; init-magit.el ends here

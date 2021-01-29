@@ -50,9 +50,11 @@
   (package-install 'use-package))
 
 (use-package company-box
+  :diminish
   :hook (company-mode . company-box-mode))
 
 (use-package company-emoji
+  :diminish
   :config (add-to-list 'company-backends 'company-emoji))
 
 (provide 'init-company)

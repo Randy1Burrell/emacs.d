@@ -98,10 +98,20 @@
   (diminish 'subword-mode))
 
 
+;;----------------------------------------------------------------------------
+;; Set up line number
+;;----------------------------------------------------------------------------
+(defun rb/display-line-numbers-mode ()
+  (setq display-line-numbers-width 3)
+  (setq display-line-numbers-width-start t)
+  ;; (global-display-line-numbers-mode      nil)
+  (setq display-line-numbers-type 'relative)
+  (display-line-numbers-mode))
 
 (when (fboundp 'display-line-numbers-mode)
-  (setq-default display-line-numbers-width 3)
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
+  (add-hook 'prog-mode-hook 'rb/display-line-numbers-mode)
+  (add-hook 'text-mode-hook 'rb/display-line-numbers-mode)
+  (add-hook 'treemacs-mode-hook 'rb/display-line-numbers-mode))
 
 (when (maybe-require-package 'goto-line-preview)
   (global-set-key [remap goto-line] 'goto-line-preview)
@@ -300,7 +310,7 @@ With arg N, insert N newlines."
 
 (require-package 'which-key)
 (add-hook 'after-init-hook 'which-key-mode)
-(setq-default which-key-idle-delay 1.5)
+(setq-default which-key-idle-delay 0)
 (with-eval-after-load 'which-key
   (diminish 'which-key-mode))
 

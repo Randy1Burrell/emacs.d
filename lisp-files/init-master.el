@@ -173,16 +173,27 @@ Prompt only if there are unsaved changes."
                     (16   (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
                           (delete-other-windows)))))
 
-(unless (package-installed-p 'vimrc-mode)
-  (package-install 'vimrc-mode))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 
-(unless (package-installed-p 'zlc)
-  (package-install 'zlc))
+(use-package vimrc-mode
+  :diminish)
 
-(unless (package-installed-p 'eshell-git-prompt)
-  (package-install 'eshell-git-prompt))
+(use-package zlc
+  :diminish)
+
+(use-package eshell-git-prompt
+  :diminish)
+
+(use-package command-log-mode
+  :diminish)
 
 (eshell-git-prompt-use-theme 'powerline)
+
+(dolist (mode '(term-mode-hook
+                eshell-mode-hook
+                ielm-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (provide 'init-master)
 ;;; init-master.el ends here

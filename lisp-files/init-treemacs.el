@@ -87,5 +87,8 @@
   :after treemacs perspective
   :config (treemacs-set-scope-type 'Perspectives))
 
+;; (use-package treemacs-evil
+;; :after treemacs evils)
+
 (provide 'init-treemacs)
 ;;; init-treemacs.el ends here

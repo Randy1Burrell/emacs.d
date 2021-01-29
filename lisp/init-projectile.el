@@ -16,6 +16,11 @@
 
   (maybe-require-package 'ibuffer-projectile))
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here
