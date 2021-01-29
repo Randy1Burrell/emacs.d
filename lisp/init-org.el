@@ -106,24 +106,6 @@
            "\\(^*+\\)\s+.*:\\(ignore\\|noexport\\)\\([@_][0-9]\\)?:\\($\\|[^ ]*?:$\\)"))
 
 
-;; Set org-modules I want to use
-(setq org-modules
-      '(ol-bbdb
-        ol-bibtex
-        org-crypt
-        ol-docview
-        ol-eww
-        ol-gnus
-        org-habit
-        ol-info
-        ol-irc
-        ol-rmail
-        ol-w3m
-        ol-eshell
-        ol-bookmark
-        org-checklist
-        org-toc))
-
 (use-package org-sticky-header
   :hook (org-mode . org-sticky-header-mode)
   :config
@@ -641,6 +623,19 @@ typical word processor."
      (sql . t)
      (sqlite . t))))
 
+
+(when (not (file-exists-p "~/.emacs.d/plantuml.jar"))
+  (shell-command-to-string
+   "curl -LO https://downloads.sourceforge.net/project/plantuml/plantuml.jar")
+  (unless (file-exists-p "~/.emacs.d/plantuml.jar")
+    (shell-command-to-string
+     "mv plantuml.jar ~/.emacs.d/")))
+
+(when (file-exists-p "~/.emacs.d/plantuml.jar")
+  (setq org-plantuml-jar-path
+        (expand-file-name  "~/.emacs.d/plantuml.jar"))
+
+  (setq org-confirm-babel-evaluate nil))
 ;;----------------------------------------------------------------------------
 ;; I'm making the checkbox feature work with bullets as well as the normal way.
 ;; I copied this code from Sasha Chua at:
@@ -653,7 +648,7 @@ update them with the current numbers.  With optional prefix
 argument ALL, do this for the whole buffer."
   (interactive "P")
   (save-excursion
-    (let* (; (buffer-invisibility-spec (org-inhibit-invisibility))
+    (let* (              ; (buffer-invisibility-spec (org-inhibit-invisibility))
            (beg (condition-case nil
                     (progn (outline-back-to-heading) (point))
                   (error (point-min))))
@@ -707,20 +702,23 @@ argument ALL, do this for the whole buffer."
         (wicked/org-update-checkbox-count (ad-get-arg 1))))
 
 ;;----------------------------------------------------------------------------
-;; Let's get some fancy bullets
 ;;----------------------------------------------------------------------------
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
 
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode))
+;; Set org-modules I want to use
+(setq org-modules
+      '(ol-bbdb
+        ol-bibtex
+        org-crypt
+        ol-docview
+        ol-eww
+        ol-gnus
+        org-habit
+        ol-info
+        ol-irc
+        ol-rmail
+        ol-w3m
+        ol-eshell))
 
-(use-package toc-org
-  ;; Automatically update toc when saving an Org file.
-  :hook (org-mode . toc-org-mode)
-  ;; Use both “:ignore_N:” and ":export_N:” to exlude headings from the TOC.
-  :custom (toc-org-noexport-regexp
-           "\\(^*+\\)\s+.*:\\(ignore\\|noexport\\)\\([@_][0-9]\\)?:\\($\\|[^ ]*?:$\\)"))
 
 (provide 'init-org)
 ;;; init-org.el ends here

@@ -15,6 +15,11 @@ Fix for the above hasn't been released as of Emacs 25.2."
 
 (add-hook 'sql-interactive-mode-hook 'sanityinc/fix-postgres-prompt-regexp)
 
+;; Ask for port when I try to login to dbs (MySQL/PostgreSQL)
+(require 'sql)
+(setq sql-postgres-login-params (append sql-postgres-login-params '(port :default 5432)))
+(setq sql-mysql-login-params (append sql-mysql-login-params '(port :default 3306)))
+
 (defun sanityinc/pop-to-sqli-buffer ()
   "Switch to the corresponding sqli buffer."
   (interactive)

@@ -7,11 +7,13 @@
   (package-install 'use-package))
 
 (use-package perspective
+  :commands (persp-switch)
   :config
   (setq persp-state-default-file "~/.emacs.d/persp-confs/persp-auto-save")
   :init
   (persp-mode)
-  :bind (("s-b" . persp-counsel-switch-buffer)
+  :bind (("s-s" . persp-switch)
+         ("s-b" . persp-counsel-switch-buffer)
          ("s-M-b" . persp-ivy-switch-buffer)
          ("C-x b" . persp-switch-to-buffer*)
          ("C-x k" . persp-kill-buffer*)))

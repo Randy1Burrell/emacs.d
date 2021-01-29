@@ -64,3 +64,4 @@ flycheck_*
 /emojis/
 /persp-confs/
 /.last-package-update-day
+/site-lisp/plantuml_helpers.el

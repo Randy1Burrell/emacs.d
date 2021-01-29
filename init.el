@@ -65,8 +65,8 @@
 (require 'init-magit)
 (require 'init-restart-emacs)
 (require 'init-treemacs)
-(require 'init-phpcbf)
 (require 'init-master)
+(require 'init-ssh)
 (require 'init-csharp)
 ;;----------------------------------------------------------------------------
 ;; Original configurations
@@ -231,6 +231,11 @@
 ;; Journaling
 ;;----------------------------------------------------------------------------
 (require 'init-journal)
+
+;;----------------------------------------------------------------------------
+;; Plantuml
+;;----------------------------------------------------------------------------
+(require 'init-plantuml)
 
 
 

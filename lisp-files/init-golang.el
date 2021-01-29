@@ -5,21 +5,22 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
-;; (defun custom-go-mode ()
-;;   (display-line-numbers-mode 1 ))
-
-
 (use-package go-mode
   :defer t
-  :init
+  :config
   (setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")
-  (setq compilation-read-command nil)
-  ;; (add-hook 'go-mode-hook 'custom-go-mode)
-  :bind (("M-," . compile)
-         ("M-." . godef-jump)))
+  (setq compilation-read-command nil))
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            (local-set-key (kbd "M-,") 'compile)
+            (local-set-key (kbd "M-.") 'godef-jump)))
+;; Set compile-command back to its original value
+;; (setq compile-command (eval (car (get 'compile-command 'standard-value))))
 
 (unless (package-installed-p 'lsp-mode)
   (package-install 'lsp-mode))
+(require 'lsp)
 (add-hook 'go-mode-hook #'lsp-diferred)
 
 ;; Set up before-save hooks to format buffer and add/delete imports.

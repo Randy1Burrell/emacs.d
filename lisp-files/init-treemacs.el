@@ -50,6 +50,7 @@
           treemacs-user-mode-line-format         nil
           treemacs-width                         40)
 
+    (setf treemacs-read-string-input 'from-minibuffer)
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
     ;;(treemacs-resize-icons 44)
