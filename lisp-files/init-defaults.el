@@ -29,8 +29,13 @@
 ;;----------------------------------------------------------------------------
 (blink-cursor-mode 0)
 (global-hl-line-mode t)
-(add-hook 'find-file-hook '(lambda () (set-default 'truncate-lines t)))
-(set-default 'truncate-lines t)
+;; (add-hook 'find-file-hook '(lambda () (set-default 'truncate-lines t)))
+;; (set-default 'truncate-lines t)
+
+(dolist (mode '(prog-mode-hook
+                text-mode-hook
+                treemacs-mode-hook))
+  (add-hook mode (lambda () (set-default 'truncate-lines t))))
 
 ;;----------------------------------------------------------------------------
 ;; Save bookmarks automagically

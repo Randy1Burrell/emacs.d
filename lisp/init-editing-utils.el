@@ -102,10 +102,11 @@
 ;; Set up line number
 ;;----------------------------------------------------------------------------
 (defun rb/display-line-numbers-mode ()
-  (setq display-line-numbers-width 3)
-  (setq display-line-numbers-width-start t)
+  "Setup line number for buffer."
+  (setq display-line-numbers-width 1
+        display-line-numbers-width-start t
+        display-line-numbers-type 'relative)
   ;; (global-display-line-numbers-mode      nil)
-  (setq display-line-numbers-type 'relative)
   (display-line-numbers-mode))
 
 (when (fboundp 'display-line-numbers-mode)
