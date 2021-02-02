@@ -7,6 +7,7 @@
   (package-install 'use-package))
 
 (use-package perspective
+  :diminish
   :commands (persp-switch)
   :config
   (setq persp-state-default-file "~/.emacs.d/persp-confs/persp-auto-save")

@@ -18,16 +18,5 @@
 ;; Hydra: Supply a prefix only once:2 ends here
 ;;--------------------------------------------------------------------------------
 
-;;--------------------------------------------------------------------------------
-;; Use ijkl to denote ↑←↓→ arrows.
-;;--------------------------------------------------------------------------------
-(defhydra hydra-windows (global-map    "C-c w"   )
-  ("b" balance-windows                 "balance" )
-  ("i" enlarge-window                  "heighten")
-  ("j" shrink-window-horizontally      "narrow"  )
-  ("k" shrink-window                   "lower"   )
-  ("l" enlarge-window-horizontally     "widen"   )
-  ("s" switch-window-then-swap-buffer  "swap" :color teal))
-
 (provide 'init-hydra)
 ;;; init-hydra.el ends here

@@ -14,13 +14,16 @@
   (with-eval-after-load 'projectile
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
+  (when (maybe-require-package 'diminish)
+    (diminish 'projectile-mode))
+
   (maybe-require-package 'ibuffer-projectile))
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
 (use-package counsel-projectile
-  :config (counsel-projectile-mode))
+  :init (counsel-projectile-mode))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

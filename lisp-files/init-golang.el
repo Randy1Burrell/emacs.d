@@ -45,6 +45,8 @@
 
 (add-hook 'go-mode-hook 'lsp-deferred)
 
+(setq-local compilation-window-height 14)
+
 (defun my-compilation-hook ()
   "Run at compilation time."
   (when (not (get-buffer-window "*compilation*"))

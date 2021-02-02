@@ -58,13 +58,13 @@
 ;; Added after forking repository
 ;;----------------------------------------------------------------------------
 (require 'init-use-package)
-(require 'init-evil)
 (require 'init-hydra)
 (require 'init-lsp)
 (require 'init-golang)
 (require 'init-navigation)
 (require 'init-magit)
 (require 'init-restart-emacs)
+(require 'init-evil)
 (require 'init-treemacs)
 (require 'init-master)
 (require 'init-ssh)
@@ -171,7 +171,8 @@
   (add-hook 'after-init-hook (lambda () (require 'uptimes))))
 
 (when (fboundp 'global-eldoc-mode)
-  (add-hook 'after-init-hook 'global-eldoc-mode))
+  (add-hook 'after-init-hook 'global-eldoc-mode)
+  (diminish 'eldoc-mode))
 
 (require 'init-direnv)
 
@@ -242,6 +243,12 @@
 ;; Helpful
 ;;----------------------------------------------------------------------------
 (require 'init-helpful)
+
+;;----------------------------------------------------------------------------
+;; General
+;;----------------------------------------------------------------------------
+(require 'init-general)
+
 
 
 (provide 'init)

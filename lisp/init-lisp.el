@@ -13,6 +13,7 @@
               (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
 
 
+(diminish 'elisp-slime-nav-mode)
 (defun sanityinc/headerise-elisp ()
   "Add minimal header and footer to an elisp buffer in order to placate flycheck."
   (interactive)
@@ -173,7 +174,8 @@ there is no current file, eval the current buffer."
 
 
 (when (maybe-require-package 'aggressive-indent)
-  (add-to-list 'sanityinc/lispy-modes-hook 'aggressive-indent-mode))
+  (add-to-list 'sanityinc/lispy-modes-hook 'aggressive-indent-mode)
+  (diminish 'aggressive-indent-mode))
 
 (defun sanityinc/lisp-setup ()
   "Enable features useful in any Lisp mode."

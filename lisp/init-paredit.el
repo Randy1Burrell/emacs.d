@@ -37,6 +37,7 @@
   (if (memq this-command paredit-minibuffer-commands)
       (enable-paredit-mode)))
 
+(diminish 'paredit-mode)
 
 (provide 'init-paredit)
 ;;; init-paredit.el ends here
