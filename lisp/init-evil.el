@@ -16,6 +16,9 @@
   (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-insert-state-map (kbd "C-k") 'evil-previous-visual-line)
+  (define-key evil-insert-state-map (kbd "C-j") 'evil-next-visual-line)
+  (define-key evil-insert-state-map (kbd "C-e") 'evil-append-line)
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -39,21 +42,12 @@
   (evil-define-key '(normal visual) 'global (kbd "<leader>0") 'delete-frame)
   (evil-define-key '(normal visual) 'global (kbd "<leader>q")
     (lambda (&optional prefix)
-      "C-x k     ⇒ Kill current buffer & window
-C-u C-x k ⇒ Kill OTHER window and its buffer
-C-u C-u C-x C-k ⇒ Kill all other buffers and windows
-
-Prompt only if there are unsaved changes."
       (interactive "P")
       (pcase (or (car prefix) 0)
-        ;; C-x k     ⇒ Kill current buffer & window
         (0  (kill-this-buffer))
-        ;; (unless (one-window-p) (delete-window)))
-        ;; C-u C-x k ⇒ Kill OTHER window and its buffer
         (4  (other-window 1)
             (kill-this-buffer)
             (unless (one-window-p) (delete-window)))
-        ;; C-u C-u C-x C-k ⇒ Kill all other buffers and windows
         (16   (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
               (delete-other-windows)))))
   (use-package evil-surround
@@ -65,7 +59,10 @@ Prompt only if there are unsaved changes."
     :diminish
     :after evil
     :config
-    (evil-collection-init)))
+    (evil-collection-init))
+  (use-package evil-nerd-commenter
+    :diminish
+    :bind ("s-\\" . evilnc-comment-or-uncomment-lines)))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

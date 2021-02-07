@@ -182,13 +182,11 @@ Prompt only if there are unsaved changes."
 (use-package zlc
   :diminish)
 
-(use-package eshell-git-prompt
-  :diminish)
-
 (use-package command-log-mode
-  :diminish)
-
-(eshell-git-prompt-use-theme 'powerline)
+  :diminish
+  :config
+  (setq global-command-log-mode t)
+  (setq command-log-mode-auto-show t))
 
 (dolist (mode '(term-mode-hook
                 eshell-mode-hook

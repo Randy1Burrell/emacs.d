@@ -16,9 +16,5 @@
   :defer t
   :config (all-the-icons-gnus-setup))
 
-;; While we're at it: Make dired, ‘dir’ectory ‘ed’itor, look pretty
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
-
 (provide 'init-icons)
 ;;; init-icons.el ends here

@@ -11,6 +11,23 @@
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   :config
+  (use-package treemacs-projectile
+    :after (treemacs projectile))
+
+  (use-package treemacs-icons-dired
+    :after (treemacs dired)
+    :config (treemacs-icons-dired-mode))
+
+  (use-package treemacs-magit
+    :after (treemacs magit))
+
+  (use-package treemacs-perspective
+    :after (treemacs perspective)
+    :config (treemacs-set-scope-type 'Perspectives))
+
+  (use-package treemacs-evil
+    :after (treemacs evil))
+
   (progn
     (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
           treemacs-deferred-git-apply-delay      0.5
@@ -72,23 +89,6 @@
         ("C-x t B"   . treemacs-bookmark)
         ("C-x t C-t" . treemacs-find-file)
         ("C-x t M-t" . treemacs-find-tag)))
-
-(use-package treemacs-projectile
-  :after treemacs projectile)
-
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :config (treemacs-icons-dired-mode))
-
-(use-package treemacs-magit
-  :after treemacs magit)
-
-(use-package treemacs-perspective
-  :after treemacs perspective
-  :config (treemacs-set-scope-type 'Perspectives))
-
-(use-package treemacs-evil
-  :after treemacs evils)
 
 (provide 'init-treemacs)
 ;;; init-treemacs.el ends here

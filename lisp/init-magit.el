@@ -16,8 +16,9 @@
   (shell-command "git config --global user.name \"Randy Burrell\"")
   (shell-command "git config --global user.email \"randy1burrell@yahoo.com\""))
 
-(defmacro pretty-magit (WORD &optional ICON PROPS NO-PROMPT?)
-  "Replace sanitized WORD with ICON, PROPS and by default add to prompts."
+(defmacro rb/pretty-magit (WORD &optional ICON PROPS NO-PROMPT?)
+  "Replace sanitised WORD with ICON, PROPS and by default add to prompts.
+Unless NO-PROMPT?"
   `(prog1
        (add-to-list 'pretty-magit-alist
                     (list (rx bow (group ,WORD (eval (if ,NO-PROMPT? "" ":"))))
@@ -25,15 +26,28 @@
      (unless ,NO-PROMPT?
        (add-to-list 'pretty-magit-prompt (concat ,WORD ": ")))))
 
+(defmacro rb/pretty-magit-no-semi (WORD &optional ICON PROPS NO-PROMPT?)
+  "Replace sanitised WORD with ICON, PROPS and by default add to prompts.
+Unless NO-PROMPT?"
+  `(prog1
+       (add-to-list 'pretty-magit-alist
+                    (list (rx bow (group ,WORD (eval (if ,NO-PROMPT? "" ""))))
+                          ,ICON ',PROPS))
+     (unless ,NO-PROMPT?
+       (add-to-list 'pretty-magit-prompt (concat ,WORD " ")))))
 ;; Set up who prompts on commit
 (setq pretty-magit-alist nil)
 (setq pretty-magit-prompt nil)
-(pretty-magit "feat")
-(pretty-magit "docs")
-(pretty-magit "fix")
-(pretty-magit "style")
-(pretty-magit "refactor")
-(pretty-magit "perf")
+(rb/pretty-magit "feat" "🆕")
+(rb/pretty-magit "docs" "📁")
+(rb/pretty-magit "fix" "🔨")
+(rb/pretty-magit "style" "🔭")
+(rb/pretty-magit "refactor" "🐰")
+(rb/pretty-magit-no-semi "[Feat]" "🆕")
+(rb/pretty-magit-no-semi "[Docs]" "📁")
+(rb/pretty-magit-no-semi "[Fix]" "🔨")
+(rb/pretty-magit-no-semi "[Style]" "🔭")
+(rb/pretty-magit-no-semi "[Refactor]" "🐰")
 
 ;; TODO: Figure out why I can't use certain key bindings in magit commit buffer
 (defun add-magit-faces ()
