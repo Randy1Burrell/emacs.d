@@ -40,5 +40,18 @@
 (when (maybe-require-package 'reformatter)
   (reformatter-define black :program "black"))
 
+(use-package pyvenv
+  :config
+  (pyvenv-mode 1))
+
+(defun projectile-pyenv-mode-set ()
+  "Set pyenv version matching project name."
+  (let ((project (projectile-project-name)))
+    (if (member project (pyenv-mode-versions))
+        (pyenv-mode-set project)
+      (pyenv-mode-unset))))
+
+(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
+
 (provide 'init-python)
 ;;; init-python.el ends here
