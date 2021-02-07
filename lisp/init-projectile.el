@@ -17,6 +17,10 @@
   (when (maybe-require-package 'diminish)
     (diminish 'projectile-mode))
 
+  (defadvice projectile-project-root (around ignore-remote first activate)
+    "Turn off projectile in remote buffer."
+    (unless (file-remote-p default-directory 'no-identification) ad-do-it))
+
   (maybe-require-package 'ibuffer-projectile))
 
 (unless (package-installed-p 'use-package)
