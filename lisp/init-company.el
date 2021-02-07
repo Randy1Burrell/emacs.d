@@ -23,7 +23,10 @@
     (define-key company-active-map (kbd "C-d") 'company-show-doc-buffer)
     (define-key company-active-map (kbd "M-.") 'company-show-location)
     (setq-default company-dabbrev-other-buffers 'all
-                  company-tooltip-align-annotations t))
+                  company-tooltip-align-annotations t
+                  company-idle-delay 0.0
+                  company-tooltip-idle-delay 0.1
+                  company-minimum-prefix-length 1))
   (global-set-key (kbd "M-C-/") 'company-complete)
   (when (maybe-require-package 'company-quickhelp)
     (add-hook 'after-init-hook 'company-quickhelp-mode)))
@@ -50,12 +53,27 @@
   (package-install 'use-package))
 
 (use-package company-box
+  :after (company)
   :diminish
   :hook (company-mode . company-box-mode))
 
 (use-package company-emoji
+  :after (company)
   :diminish
-  :config (add-to-list 'company-backends 'company-emoji))
+  :config (add-to-list 'company-backends 'company-emoji)
+  (defun --set-emoji-font (frame)
+    "Adjust the font settings of FRAME so Emacs can display emoji properly."
+    (if (eq system-type 'darwin)
+        ;; For NS/Cocoa
+        (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") frame 'prepend)
+      ;; For Linux
+      (set-fontset-font t 'symbol (font-spec :family "Symbola") frame 'prepend)))
+
+  ;; For when Emacs is started in GUI mode:
+  (--set-emoji-font nil)
+  ;; Hook for when a frame is created with emacsclient
+  ;; see https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Frames.html
+  (add-hook 'after-make-frame-functions '--set-emoji-font))
 
 (provide 'init-company)
 ;;; init-company.el ends here
