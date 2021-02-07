@@ -65,3 +65,4 @@ flycheck_*
 /persp-confs/
 /.last-package-update-day
 /site-lisp/plantuml_helpers.el
+/site-lisp/org-appear/
