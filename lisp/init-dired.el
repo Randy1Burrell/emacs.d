@@ -20,11 +20,28 @@
 (with-eval-after-load 'dired
   (setq dired-recursive-deletes 'top)
   (define-key dired-mode-map [mouse-2] 'dired-find-file)
-  (define-key dired-mode-map (kbd "C-c C-q") 'wdired-change-to-wdired-mode))
+  (define-key dired-mode-map (kbd "C-c C-q") 'wdired-change-to-wdired-mode)
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "h" 'dired-single-up-directory
+    "l" 'dired-single-buffer))
 
 (when (maybe-require-package 'diff-hl)
   (with-eval-after-load 'dired
     (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
+
+(use-package dired-single)
+
+(use-package dired-open)
+
+(use-package dired-hide-dotfiles
+  :hook (dired-mode . dired-hide-dotfiles-mode)
+  :config
+  (evil-collection-define-key 'normal 'dired-mode-map
+    "H" 'dired-hide-dotfiles-mode))
+
+;; While we're at it: Make dired, ‘dir’ectory ‘ed’itor, look pretty
+(use-package all-the-icons-dired
+  :hook (dired-mode . all-the-icons-dired-mode))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here
