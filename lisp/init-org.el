@@ -743,7 +743,6 @@ argument ALL, do this for the whole buffer."
         ol-eww
         ol-gnus
         org-habit
-        org-toc
         ol-info
         ol-irc
         ol-rmail
