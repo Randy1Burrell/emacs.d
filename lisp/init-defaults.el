@@ -83,5 +83,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 
+(global-set-key (kbd "C-x C-'") 'comment-or-uncomment-region)
+
 (provide 'init-defaults)
 ;;; init-defaults.el ends here
